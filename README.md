@@ -1,6 +1,6 @@
 # Azure SQL Server Retention Planner
 
-Estimate and visualize Azure SQL long-term backup (LTR) storage costs. That's it. Keep it simple.
+Estimate and visualize Azure SQL long-term backup (LTR) storage costs. Pretty much entirely vibed up by [Claude](https://claude.ai/)
 
 Currently hosted at https://azsqlretention.term.nz
 
