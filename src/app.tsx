@@ -229,6 +229,9 @@ export function App() {
           <h1>Azure SQL Server Retention Planner</h1>
           <ThemeToggle />
         </div>
+        <p class="pricing-disclaimer">
+          <em>Prices are estimates only. Verify actual pricing via <a href="https://azure.microsoft.com/en-us/pricing/details/azure-sql-database" target="_blank" rel="noopener noreferrer">azure.microsoft.com/en-us/pricing/details/azure-sql-database</a></em>
+        </p>
       </header>
 
       <div class="form-section">
