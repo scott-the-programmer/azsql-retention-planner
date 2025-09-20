@@ -12,15 +12,15 @@ RUN cargo build --release && rm -rf src
 
 COPY src ./src
 
-RUN cargo build --release
+RUN cargo build --release --target aarch64-unkown-linux-musl
 
 FROM alpine:latest
 
-RUN apk add --no-cache ca-certificates openssl
+RUN apk add --no-cache ca-certificates openssl openssl-libs-static
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/azure-pricing-api /app/azure-pricing-api
+COPY --from=builder /app/target/aarch64-unknown-linux-musl/release/azure-pricing-api /app/azure-pricing-api
 
 EXPOSE 8080
 
