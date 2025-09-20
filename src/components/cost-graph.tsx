@@ -66,23 +66,42 @@ export function CostGraph({
       xAxisInterval
     );
 
+    // Get computed theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const textPrimary = computedStyle.getPropertyValue('--text-primary').trim();
+    const textSecondary = computedStyle.getPropertyValue('--text-secondary').trim();
+
     const chartOptions: ChartOptions<"line"> = {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: {
           position: "top",
+          labels: {
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
+          },
         },
         title: {
           display: true,
           text: "Long Term Retention Cost Timeline",
+          color: textPrimary,
           font: {
             size: 16,
+            weight: 700,
           },
         },
         tooltip: {
           mode: "index",
           intersect: false,
+          backgroundColor: computedStyle.getPropertyValue('--glass-bg').trim(),
+          titleColor: textPrimary,
+          bodyColor: textPrimary,
+          borderColor: computedStyle.getPropertyValue('--glass-border').trim(),
+          borderWidth: 1,
           callbacks: {
             label: function (context: any) {
               const label = context.dataset.label || "";
@@ -99,6 +118,21 @@ export function CostGraph({
           title: {
             display: true,
             text: "Timeline",
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
+          },
+          ticks: {
+            color: textSecondary,
+            font: {
+              size: 12,
+              weight: 500,
+            },
+          },
+          grid: {
+            color: computedStyle.getPropertyValue('--glass-border').trim(),
           },
         },
         y: {
@@ -106,6 +140,21 @@ export function CostGraph({
           title: {
             display: true,
             text: "Monthly Cost ($)",
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
+          },
+          ticks: {
+            color: textSecondary,
+            font: {
+              size: 12,
+              weight: 500,
+            },
+          },
+          grid: {
+            color: computedStyle.getPropertyValue('--glass-border').trim(),
           },
           beginAtZero: true,
         },

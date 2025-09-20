@@ -142,6 +142,11 @@ export function AllDatabasesCostGraph({
       datasets: datasets,
     };
 
+    // Get computed theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const textPrimary = computedStyle.getPropertyValue('--text-primary').trim();
+    const textSecondary = computedStyle.getPropertyValue('--text-secondary').trim();
+
     const chartOptions: ChartOptions<"line"> = {
       responsive: true,
       maintainAspectRatio: false,
@@ -151,18 +156,30 @@ export function AllDatabasesCostGraph({
           labels: {
             usePointStyle: true,
             padding: 20,
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
           },
         },
         title: {
           display: true,
           text: "All Databases Cost Comparison",
+          color: textPrimary,
           font: {
             size: 16,
+            weight: 700,
           },
         },
         tooltip: {
           mode: "index",
           intersect: false,
+          backgroundColor: computedStyle.getPropertyValue('--glass-bg').trim(),
+          titleColor: textPrimary,
+          bodyColor: textPrimary,
+          borderColor: computedStyle.getPropertyValue('--glass-border').trim(),
+          borderWidth: 1,
           callbacks: {
             label: function (context: any) {
               const label = context.dataset.label || "";
@@ -179,6 +196,21 @@ export function AllDatabasesCostGraph({
           title: {
             display: true,
             text: "Timeline",
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
+          },
+          ticks: {
+            color: textSecondary,
+            font: {
+              size: 12,
+              weight: 500,
+            },
+          },
+          grid: {
+            color: computedStyle.getPropertyValue('--glass-border').trim(),
           },
         },
         y: {
@@ -186,6 +218,21 @@ export function AllDatabasesCostGraph({
           title: {
             display: true,
             text: "Monthly Cost ($)",
+            color: textPrimary,
+            font: {
+              size: 14,
+              weight: 600,
+            },
+          },
+          ticks: {
+            color: textSecondary,
+            font: {
+              size: 12,
+              weight: 500,
+            },
+          },
+          grid: {
+            color: computedStyle.getPropertyValue('--glass-border').trim(),
           },
           beginAtZero: true,
         },

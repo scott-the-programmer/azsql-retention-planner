@@ -69,7 +69,9 @@ export function DatabaseConfiguration({
             ))}
           </select>
         </div>
+      </div>
 
+      <div class="form-row">
         <div class="form-group">
           <label>Storage Redundancy</label>
           <select

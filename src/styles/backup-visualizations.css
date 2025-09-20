@@ -4,8 +4,8 @@
 
 .visualization-tabs {
   display: flex;
-  background: linear-gradient(135deg, #F0F8FF 0%, #E8F4FF 100%);
-  border-bottom: 1px solid #B8D4F1;
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .tab-button {
@@ -15,21 +15,21 @@
   border: none;
   font-size: 0.95em;
   font-weight: 500;
-  color: #5A9FD4;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
   border-bottom: 3px solid transparent;
 }
 
 .tab-button:hover {
-  background: rgba(30, 144, 255, 0.1);
-  color: #1E90FF;
+  background: var(--glass-hover);
+  color: var(--text-primary);
 }
 
 .tab-button.active {
-  background: white;
-  color: #1E90FF;
-  border-bottom-color: #1E90FF;
+  background: var(--glass-hover);
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
 }
 
 .visualization-content {
@@ -58,22 +58,22 @@
 }
 
 .backup-card {
-  background: white;
-  border: 1px solid #B8D4F1;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(30, 144, 255, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .backup-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.2);
+  box-shadow: 0 4px 12px var(--shadow-color-hover);
 }
 
 .card-header {
   padding: 15px 20px;
-  color: white;
+  color: var(--text-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -113,18 +113,18 @@
 
 .metric-label {
   font-size: 0.9em;
-  color: #5A9FD4;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .metric-value {
   font-size: 0.95em;
-  color: #1E90FF;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .metric-value.highlight {
-  color: #1E90FF;
+  color: var(--text-primary);
   font-size: 1.1em;
 }
 
@@ -149,7 +149,7 @@
 
 .storage-label {
   font-size: 0.8em;
-  color: #5A9FD4;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -201,7 +201,7 @@
   align-items: center;
   gap: 8px;
   font-size: 0.9em;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .legend-dot {
@@ -226,21 +226,21 @@
 .circular-info {
   max-width: 400px;
   text-align: center;
-  background: linear-gradient(135deg, #F0F8FF 0%, #E8F4FF 100%);
+  background: var(--glass-bg);
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid #B8D4F1;
+  border: 1px solid var(--glass-border);
 }
 
 .circular-info h4 {
   margin: 0 0 10px 0;
-  color: #1E90FF;
+  color: var(--text-primary);
   font-size: 1.1em;
 }
 
 .circular-info p {
   margin: 0 0 15px 0;
-  color: #5A9FD4;
+  color: var(--text-secondary);
   font-size: 0.9em;
 }
 
@@ -248,7 +248,7 @@
   text-align: left;
   margin: 0;
   padding-left: 20px;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 0.85em;
 }
 
@@ -257,15 +257,15 @@
 }
 
 .storage-impact-section {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E8F4FF 100%);
+  background: var(--glass-bg);
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid #B8D4F1;
+  border: 1px solid var(--glass-border);
 }
 
 .storage-impact-section h4 {
   margin: 0 0 15px 0;
-  color: #1E90FF;
+  color: var(--text-primary);
   font-size: 1.1em;
   text-align: center;
 }
@@ -277,10 +277,10 @@
 }
 
 .storage-metric-row {
-  background: white;
+  background: var(--glass-hover);
   border-radius: 6px;
   padding: 15px;
-  border: 1px solid #B8D4F1;
+  border: 1px solid var(--glass-border);
 }
 
 .metric-info {
@@ -304,12 +304,12 @@
 
 .metric-type {
   font-weight: 600;
-  color: #1E90FF;
+  color: var(--text-primary);
   font-size: 0.95em;
 }
 
 .metric-count {
-  color: #5A9FD4;
+  color: var(--text-secondary);
   font-size: 0.85em;
   margin-left: auto;
 }

@@ -2,5 +2,11 @@ import { render } from 'preact'
 import '@picocss/pico/css/pico.min.css'
 import './index.css'
 import { App } from './app.tsx'
+import { ThemeProvider } from './contexts/ThemeContext.tsx'
 
-render(<App />, document.getElementById('app')!)
+render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('app')!
+)
