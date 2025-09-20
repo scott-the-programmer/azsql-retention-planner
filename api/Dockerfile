@@ -9,7 +9,7 @@ COPY Cargo.toml Cargo.lock ./
 RUN mkdir src && echo "fn main() {}" > src/main.rs
 
 RUN rustup target add aarch64-unknown-linux-musl && \
-	cargo build --release && rm -rf src
+	cargo build --release --target aarch64-unknown-linux-musl && rm -rf src
 
 COPY src ./src
 
