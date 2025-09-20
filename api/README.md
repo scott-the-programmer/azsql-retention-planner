@@ -2,7 +2,7 @@
 
 A simple Rust API that wraps Azure's pricing API for easier access to SQL Database backup storage pricing. 
 
-Used to power https://azretentioncalculator.termnz
+Used to power https://azsqlretention.term.nz
 
 ## API Endpoints
 
