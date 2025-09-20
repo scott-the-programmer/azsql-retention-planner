@@ -1,11 +1,74 @@
 # Azure SQL Server Retention Planner
 
+Estimate and visualize Azure SQL long-term backup (LTR) storage costs. That's it. Keep it simple.
+
+Production: https://azsqlretention.term.nz
+
 ![site-view](readme-assets/site.png)
 
-A simple price cost calculator for [Long-term retention backups](https://learn.microsoft.com/en-us/azure/azure-sql/database/long-term-retention-overview?view=azuresql) for Azure SQL. Allows you to easily visualise the cost of your LTR Backups!
+---
 
-**_ Obligatory disclaimer - these values are derived from [Azure SQL Database pricing](https://azure.microsoft.com/en-us/pricing/details/azure-sql-database/elastic/) and may differ in reality. Trust at your own risk! _**
+## Self Hosting
 
-Currently hosted on [azsqlretention.term.nz](azsqlretention.term.nz)
+### Option 1: Docker Compose (Frontend + API)
 
-## Self-Hosting
+```
+docker compose up --build
+```
+
+Then visit: http://localhost:3000 (frontend) and http://localhost:8080 (API health: /health).
+
+Stop with Ctrl+C. Add `-d` to run detached.
+
+### Option 2: Run Containers Manually
+
+Build frontend:
+
+```
+docker build -t azsql-retention-frontend .
+docker run --rm -p 3000:80 azsql-retention-frontend
+```
+
+Build API:
+
+```
+docker build -t azsql-retention-api ./api
+docker run --rm -p 8080:8080 azsql-retention-api
+```
+
+---
+
+## Run Projects Individually
+
+### Prerequisites
+
+Install these first:
+
+- Bun (dependency install & dev server) – https://bun.sh
+- Rust toolchain (for the API) – https://rustup.rs
+- Node.js (optional; some editors/tools expect it)
+- Docker (optional; only needed if you use containers)
+
+### Backend (Rust API)
+
+```
+cd api
+cargo run
+```
+
+Listens on http://localhost:8080. Health check: `curl http://localhost:8080/health`
+
+### Frontend (Vite + Bun)
+
+Project root:
+
+```
+bun install
+bun run dev
+```
+
+### Tests
+
+```
+bun test
+```
