@@ -2,7 +2,7 @@ FROM rust:1.82-alpine AS builder
 
 WORKDIR /app
 
-RUN apk add --no-cache musl-dev openssl-dev pkgconfig openssl openssl-libs-static
+RUN apk add --no-cache musl-dev openssl-dev pkgconfig openssl-libs-static
 
 COPY Cargo.toml Cargo.lock ./
 
