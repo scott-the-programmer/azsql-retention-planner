@@ -273,7 +273,7 @@ export function App() {
 
       <footer class="app-footer">
         <div class="footer-content">
-          <span class="footer-text">Built with ❤️ by Scott</span>
+          <span class="footer-text">Built with ❤️ by <a href="https://scott.murray.kiwi" target="_blank" rel="noopener noreferrer">Scott</a></span>
           <a
             href="https://github.com/scott-the-programmer/azsql-retention-planner"
             target="_blank"
