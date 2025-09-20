@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { azurePricingService } from "./services/azure-pricing";
+import { azurePricingApiClient } from "./services/azure-pricing-api";
 import {
   costCalculator,
   type RetentionSettings,
@@ -8,14 +8,18 @@ import {
 import { DatabaseConfiguration } from "./components/DatabaseConfiguration";
 import { DatabaseManagement } from "./components/DatabaseManagement";
 import { CostResults } from "./components/CostResults";
-import { type DatabaseConfig, type FormData, type StorageRedundancy } from "./types";
+import {
+  type DatabaseConfig,
+  type FormData,
+  type StorageRedundancy,
+} from "./types";
 import "./styles/app.css";
 import "./styles/backup-visualizations.css";
 
 const getRedundancyPrice = (redundancy: StorageRedundancy): number => {
   const prices: Record<StorageRedundancy, number> = {
-    "LRS": 0.025,
-    "ZRS": 0.025,
+    LRS: 0.025,
+    ZRS: 0.025,
     "RA-GRS": 0.05,
     "RA-GZRS": 0.05,
   };
@@ -66,7 +70,7 @@ export function App() {
   useEffect(() => {
     const loadRegions = async () => {
       try {
-        const regions = await azurePricingService.getAvailableRegions();
+        const regions = await azurePricingApiClient.getAvailableRegions();
         setAvailableRegions(regions);
       } catch (error) {
         console.error("Failed to load regions:", error);
@@ -75,7 +79,7 @@ export function App() {
 
     const loadInitialPricing = async () => {
       try {
-        const price = await azurePricingService.getBestLTRPricing(
+        const price = await azurePricingApiClient.getBestLTRPricing(
           selectedDatabase?.region || "eastus"
         );
         setStoragePrice(price);
@@ -91,7 +95,7 @@ export function App() {
   useEffect(() => {
     const updatePricing = async () => {
       try {
-        const price = await azurePricingService.getBestLTRPricing(
+        const price = await azurePricingApiClient.getBestLTRPricing(
           selectedDatabase?.region || "eastus"
         );
         setStoragePrice(price);
@@ -201,7 +205,9 @@ export function App() {
       const newCostBreakdowns = new Map<string, CostBreakdown>();
 
       formData.databases.forEach((db) => {
-        const redundancyPrice = db.redundancy ? getRedundancyPrice(db.redundancy) : 0.025;
+        const redundancyPrice = db.redundancy
+          ? getRedundancyPrice(db.redundancy)
+          : 0.025;
         const costs = costCalculator.calculateCurrentCostBreakdown({
           dbSize: db.dbSize,
           growthRate: db.growthRate,
@@ -228,7 +234,11 @@ export function App() {
           <DatabaseConfiguration
             database={selectedDatabase}
             availableRegions={availableRegions}
-            storagePrice={selectedDatabase.redundancy ? getRedundancyPrice(selectedDatabase.redundancy) : 0.025}
+            storagePrice={
+              selectedDatabase.redundancy
+                ? getRedundancyPrice(selectedDatabase.redundancy)
+                : 0.025
+            }
             onInputChange={handleInputChange}
             onRetentionChange={handleRetentionChange}
           />
