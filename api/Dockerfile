@@ -12,7 +12,7 @@ RUN cargo build --release && rm -rf src
 
 COPY src ./src
 
-RUN cargo build --release --target aarch64-unkown-linux-musl
+RUN cargo build --release --target aarch64-unknown-linux-musl
 
 FROM alpine:latest
 
