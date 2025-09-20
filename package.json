@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest run"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
@@ -21,8 +19,8 @@
     "@preact/preset-vite": "^2.10.2",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
+    "vitest": "^2.1.1",
     "preact": "^10.27.2",
-    "vitest": "^2.1.4",
     "typescript": "~5.8.3",
     "vite": "^7.1.2"
   }
