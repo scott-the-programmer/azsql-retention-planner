@@ -2,7 +2,7 @@
 
 Estimate and visualize Azure SQL long-term backup (LTR) storage costs. That's it. Keep it simple.
 
-Production: https://azsqlretention.term.nz
+Currently hosted at https://azsqlretention.term.nz
 
 ![site-view](readme-assets/site.png)
 
