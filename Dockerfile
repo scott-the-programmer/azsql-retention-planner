@@ -1,5 +1,8 @@
 FROM oven/bun:1.2-alpine AS builder
 
+ARG VITE_API_BASE_URL="https://azsqlretention-api.term.nz"
+ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
+
 WORKDIR /app
 
 COPY package.json bun.lock ./
