@@ -128,6 +128,11 @@ header p {
   font-weight: 400;
 }
 
+.pricing-disclaimer p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .pricing-disclaimer a {
   color: var(--text-primary);
   text-decoration: underline;
