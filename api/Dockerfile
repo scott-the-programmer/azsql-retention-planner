@@ -29,7 +29,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/x86_64-unknown-linux-gnu/azure-pricing-api /app/azure-pricing-api
+COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/azure-pricing-api /app/azure-pricing-api
 
 USER appuser
 
