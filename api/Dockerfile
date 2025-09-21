@@ -1,27 +1,36 @@
-FROM rust:1.82-alpine AS builder
+FROM rust:1.82-slim AS builder
+
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends \
+		pkg-config \
+		libssl-dev \
+		ca-certificates \
+		build-essential && \
+	rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-
-RUN apk add --no-cache musl-dev openssl-dev pkgconfig openssl-libs-static
 
 COPY Cargo.toml Cargo.lock ./
 
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-
-RUN rustup target add aarch64-unknown-linux-musl && \
-	cargo build --release --target aarch64-unknown-linux-musl && rm -rf src
+RUN mkdir src && echo "fn main() {}" > src/main.rs && \
+	cargo build --release && \
+	rm -rf src
 
 COPY src ./src
+RUN cargo build --release
 
-RUN cargo build --release --target aarch64-unknown-linux-musl
+FROM debian:bookworm-slim AS runtime
 
-FROM alpine:latest
-
-RUN apk add --no-cache ca-certificates openssl openssl-libs-static
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends ca-certificates openssl && \
+	rm -rf /var/lib/apt/lists/* && \
+	useradd -m -u 10001 appuser
 
 WORKDIR /app
 
-COPY --from=builder /app/target/aarch64-unknown-linux-musl/release/azure-pricing-api /app/azure-pricing-api
+COPY --from=builder /app/target/release/azure-pricing-api /app/azure-pricing-api
+
+USER appuser
 
 EXPOSE 8080
 
