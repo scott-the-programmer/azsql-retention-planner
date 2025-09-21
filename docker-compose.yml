@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:8080
     ports:
       - "3000:80"
     depends_on:
@@ -20,6 +22,7 @@ services:
       - "8080:8080"
     networks:
       - app-network
+    platform: linux/amd64
 
 networks:
   app-network:
