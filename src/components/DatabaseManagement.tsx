@@ -32,8 +32,10 @@ export function DatabaseManagement({
                 class="remove-btn"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   onRemoveDatabase(db.id);
                 }}
+                type="button"
               >
                 ×
               </button>
