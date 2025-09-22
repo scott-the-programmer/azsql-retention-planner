@@ -97,44 +97,47 @@ export function DatabaseConfiguration({
 
       <div class="retention-group">
         <div class="form-group">
-          <label>Weekly Backups</label>
+          <label>Weekly Backups: {database.retention.weekly} weeks</label>
           <input
-            type="number"
+            type="range"
             value={database.retention.weekly}
             onChange={(e) =>
               onRetentionChange("weekly", Number(e.currentTarget.value))
             }
             min="0"
-            max="35"
-            placeholder="weeks"
+            max="520"
+            step="1"
+            class="retention-slider"
           />
         </div>
 
         <div class="form-group">
-          <label>Monthly Backups</label>
+          <label>Monthly Backups: {database.retention.monthly} months</label>
           <input
-            type="number"
+            type="range"
             value={database.retention.monthly}
             onChange={(e) =>
               onRetentionChange("monthly", Number(e.currentTarget.value))
             }
             min="0"
             max="120"
-            placeholder="months"
+            step="1"
+            class="retention-slider"
           />
         </div>
 
         <div class="form-group">
-          <label>Yearly Backups</label>
+          <label>Yearly Backups: {database.retention.yearly} years</label>
           <input
-            type="number"
+            type="range"
             value={database.retention.yearly}
             onChange={(e) =>
               onRetentionChange("yearly", Number(e.currentTarget.value))
             }
             min="0"
             max="10"
-            placeholder="years"
+            step="1"
+            class="retention-slider"
           />
         </div>
       </div>
