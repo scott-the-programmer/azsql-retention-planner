@@ -8,7 +8,6 @@ import {
 import { DatabaseConfiguration } from "./components/DatabaseConfiguration";
 import { DatabaseManagement } from "./components/DatabaseManagement";
 import { CostResults } from "./components/CostResults";
-import { ThemeToggle } from "./components/ThemeToggle";
 import {
   type DatabaseConfig,
   type FormData,
@@ -227,7 +226,6 @@ export function App() {
       <header>
         <div class="header-content">
           <h1>Azure SQL Server Retention Planner</h1>
-          <ThemeToggle />
         </div>
         <p class="pricing-disclaimer">
           <em>Prices are estimates only. Verify actual pricing via <a href="https://azure.microsoft.com/en-us/pricing/details/azure-sql-database" target="_blank" rel="noopener noreferrer">azure.microsoft.com/en-us/pricing/details/azure-sql-database</a></em>
