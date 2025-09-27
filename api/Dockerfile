@@ -1,4 +1,5 @@
 FROM rust:1.82-slim AS builder
+ARG TARGETARCH
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -18,7 +19,15 @@ RUN mkdir src && echo "fn main() {}" > src/main.rs && \
 
 COPY src ./src
 
-RUN cargo build --release
+RUN set -eux; \
+		case "$TARGETARCH" in \
+			amd64) RUST_TARGET=x86_64-unknown-linux-gnu ;; \
+			arm64) RUST_TARGET=aarch64-unknown-linux-gnu ;; \
+			*) echo "Unsupported TARGETARCH: $TARGETARCH" >&2; exit 1 ;; \
+		esac; \
+		echo "Building for $RUST_TARGET"; \
+		cargo build --release --target "$RUST_TARGET"; \
+		cp "target/$RUST_TARGET/release/azure-pricing-api" /app/azure-pricing-api
 
 FROM debian:bookworm-slim AS runtime
 
@@ -29,7 +38,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/azure-pricing-api /app/azure-pricing-api
+COPY --from=builder /app/azure-pricing-api /app/azure-pricing-api
 
 USER appuser
 
