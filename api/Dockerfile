@@ -18,7 +18,7 @@ RUN mkdir src && echo "fn main() {}" > src/main.rs && \
 
 COPY src ./src
 
-RUN cargo build --release --target x86_64-unknown-linux-gnu
+RUN cargo build --release
 
 FROM debian:bookworm-slim AS runtime
 
@@ -29,7 +29,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/azure-pricing-api /app/azure-pricing-api
+COPY --from=builder /app/target/release/azure-pricing-api /app/azure-pricing-api
 
 USER appuser
 
